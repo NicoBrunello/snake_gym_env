@@ -1,1 +1,2 @@
-# snake_gym_env
+Simple snake for RL experiments
+
