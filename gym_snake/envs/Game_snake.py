@@ -57,20 +57,9 @@ def step(self, action):
 		current_free = list(set(total_grid) - set(snake.getBody()))
 		fruit = current_free[random.randint(0, len(current_free )-1)]
 		pygame.draw.rect(win, (255, 255, 255), (fruit[0]*width, fruit[1]* height, width, height))
-
-	for event in pygame.event.get():
-		if event.type == pygame.KEYDOWN:
-			press = True
-			if event.key == pygame.K_DOWN:
-				direc = 0
-			if event.key == pygame.K_UP:
-				direc = 1
-			if event.key == pygame.K_LEFT:
-				direc = 2
-			if event.key == pygame.K_RIGHT:
-				direc = 3
-		if event.type == pygame.QUIT:
-			run = False
+	# Actions could be a list of 4 elements (up, down, right, left), all are 0s but the one taken which will be equal to one
+	# If none of them is taken, then it means the snake keeps the prev direction
+	
 	eaten = snake.move(direc, grid_size, fruit)
 	move_res = snake.update_Snake(win, width, height, eaten)
 	if move_res == False:
