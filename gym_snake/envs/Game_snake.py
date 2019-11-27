@@ -6,6 +6,7 @@ class game_Manager:
 	eaten = False
 	total_grid= []
 	fruit = []
+	reward = 0
 
 def init(self, height, width, grid_size):	
 	# Init pygame
@@ -63,9 +64,14 @@ def step(self, action):
 	eaten = snake.move(direc, grid_size, fruit)
 	move_res = snake.update_Snake(win, width, height, eaten)
 	if move_res == False:
+		reward = -1
 		run = False
+	elif eaten == True:
+		reward = 1
+	else:
+		reward = 0
 	pygame.display.update()
-	return getState()
+	return getState(), reward
 
 
 def quit():

@@ -36,8 +36,22 @@ class GymEnv(gym.Env):
 
 
 	def reset(self):
+		gm.quit()
 		gm.init(HEIGHT, WIDTH, GRID_SIZE)
 
 
 	def render(self, mode='human', close=False):
 		pass
+
+
+if __name__ == '__main__':
+    env = gym.make('Snake-v0')
+    for i in range(10):
+        o = env.reset()
+        for j in range(100):
+            action = env.action_space.sample()
+            start = time.time()
+            o, r, d, i = env.step(action)
+            end = time.time()
+            print(end-start)
+    env.close()
